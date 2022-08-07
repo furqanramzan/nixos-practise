@@ -48,9 +48,9 @@
 
   # Enable the XFCE Desktop Environment and i3 Window Manager.
   services.xserver.displayManager.lightdm.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
+  #services.xserver.desktopManager.xfce.enable = true;
   services.xserver.windowManager.i3.enable = true;
-  services.xserver.displayManager.defaultSession = "xfce+i3";
+  services.xserver.displayManager.defaultSession = "none+i3";
 
   # Configure keymap in X11
   services.xserver.layout = "us";
@@ -104,11 +104,15 @@
   nix.gc.dates = "monthly";
   nix.gc.options = "--delete-older-than 30d";
 
+  # Enable flake
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = "experimental-features = nix-command flakes";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   #   vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    firefox
+    firefox kitty git which wget curl nodejs-18_x cargo python310 python310Packages.pip vscode vlc sublime-merge redshift google-chrome audacity-gtk3 easytag insomnia php81 php81Packages.composer gimp libreoffice-qt transmission rhythmbox 
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -144,4 +148,5 @@
   system.stateVersion = "22.05"; # Did you read the comment?
 
 }
+
 
