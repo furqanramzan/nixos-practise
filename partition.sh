@@ -1,6 +1,6 @@
 parted /dev/nvme0n1 -- mklabel gpt
-parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 512MiB
-parted /dev/nvme0n1 -- mkpart primary linux-swap 512MiB 20GiB
+parted /dev/nvme0n1 -- mkpart ESP fat32 1MiB 600MiB
+parted /dev/nvme0n1 -- mkpart primary linux-swap 600MiB 20GiB
 parted /dev/nvme0n1 -- mkpart primary 20GiB 150GiB
 parted /dev/nvme0n1 -- mkpart primary 150GiB 100%
 parted /dev/nvme0n1 -- set 1 boot on
@@ -15,7 +15,7 @@ umount /dev/disk/by-label/home
 umount /dev/disk/by-label/nixos
 swapon /dev/disk/by-label/swap
 mount /dev/disk/by-label/nixos /mnt
-mkdir -p /mnt/{home,boot}
-mount /dev/disk/by-label/boot /mnt/boot
+mkdir -p /mnt/{home,boot,boot/efi}
+mount /dev/disk/by-label/boot /mnt/boot/efi
 mount /dev/disk/by-label/home /mnt/home
 

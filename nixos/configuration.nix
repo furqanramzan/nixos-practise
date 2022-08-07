@@ -99,7 +99,7 @@
   nixpkgs.config.allowUnfree = true;
 
   # Run garbage collector after every month.
-  nix.settings.auto-optimize-store = true;
+  nix.settings.auto-optimise-store = true;
   nix.gc.automatic = true;
   nix.gc.dates = "monthly";
   nix.gc.options = "--delete-older-than 30d";
