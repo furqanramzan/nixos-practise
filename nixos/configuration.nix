@@ -104,6 +104,10 @@
   nix.gc.dates = "monthly";
   nix.gc.options = "--delete-older-than 30d";
 
+  # Enable flake
+  nix.package = pkgs.nixFlakes;
+  nix.extraOptions = "experimental-features = nix-command flakes";
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
